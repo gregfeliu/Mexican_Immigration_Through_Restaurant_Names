@@ -20,7 +20,7 @@ Although not expected, we also see strong evidence of chain migration to specifi
 
 Overall, the regions represented mirror those regions that receive the most remittances from Mexicans living in the United States. In both cases, we see that most of the Mexicans living in the U.S. come from Central Mexico. In particular, the mainly rural regions on the Pacific coast of Central Mexico (Jalisco, Michoacàn, etc.) are well represented. This commonality leads me to believe that this method is a fruitful one in determining the origins of Mexicans living in the U.S.
 
-SHOW COMPARISON OF REGIONS REPRESENTED AND REMITTANCES 
+![Mexican Regions Represented and Remittances](./Regions_represented_plus_remittances_pct.png)
 
 ### Shortcomings
 This project is suggestive, but should not be taken as fact or proof concerning Mexican regional migration to the United States. Crucially, this project rests on the assumption that 
