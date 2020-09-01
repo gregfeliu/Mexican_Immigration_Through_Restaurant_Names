@@ -14,13 +14,13 @@ This project aimed to use the outward representations of Mexican restaurants in 
 ### Results
 We see noticable differences in the proportion of the regions referred to in restaurant names for each of these cities. Many more people in NYC are from Puebla ([_Mixteca Baja_](https://en.wikipedia.org/wiki/La_Mixteca)) than we see in any of the other cities measured. Similarly, _36_% of Dallas's Mexican restaurants are connected to Michoacàn. Overall, we see the lack of a clear pattern in which regions Mexicans come from and where they end up in the United States. Although certain clusters emerge (Pueblans in NYC, Michoacànos in Dallas ), no Mexican region dominates any U.S. city.
 
-![Mexican Regions for Each City](/Map_of_regions_from_all_cities.png)
+![Mexican Regions for Each City](./images/Map_of_regions_from_all_cities.png)
 
 Although not expected, we also see strong evidence of chain migration to specific regions, and even villages, of the United States. In New York City, we see 5 of the 69 restaurants refer to one <10,000 person town in Mexico ([Tulcingo](https://es.wikipedia.org/wiki/Municipio_de_Tulcingo)). It may even be that more people from Tulcingo del Valle, Puebla, Mexico live in NYC than in the town itself! It is almost certain that the people from Tulcingo in NYC are part of a tight-knit community that encouraged each other to move to NYC. 
 
 Overall, the regions represented mirror those regions that receive the most remittances from Mexicans living in the United States. In both cases, we see that most of the Mexicans living in the U.S. come from Central Mexico. In particular, the mainly rural regions on the Pacific coast of Central Mexico (Jalisco, Michoacàn, etc.) are well represented. This commonality leads me to believe that this method is a fruitful one in determining the origins of Mexicans living in the U.S.
 
-![Mexican Regions Represented and Remittances](./Regions_represented_plus_remittances_pct.png)
+![Mexican Regions Represented and Remittances](./images/Regions_represented_plus_remittances_pct.png)
 
 ### Shortcomings
 This project is suggestive, but should not be taken as fact or proof concerning Mexican regional migration to the United States. Crucially, this project rests on the assumption that 
