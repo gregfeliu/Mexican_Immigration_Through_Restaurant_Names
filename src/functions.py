@@ -2,6 +2,7 @@ import pickle
 import re
 import pandas as pd
 import unidecode
+import random
 
 
 ##### Demonym Dictionary Notebook #####
@@ -9,7 +10,9 @@ region_replacement_dictionary = {
     'Ciudad de Mexico': 'Mexico City',
     'Coahuila de Zaragoza': 'Coahuila',
     'Michoacan de Ocampo': 'Michoacan',
-    'State of Mexico': 'Mexico'
+    'State of Mexico': 'Mexico',
+    'Distrito Federal': "Mexico City",
+    'Estado de Mexico': "Mexico"
 }
 
 def change_df_names(dataframe, region_col):
@@ -135,3 +138,90 @@ def add_city_to_all_cities_dict(rest_matches_w_regions, city_name, df_cols=city_
     input_df['Final_region'] = ""
     return input_df
     
+##### Analysis Notebook #####
+def count_regions_in_city(city, df):
+    city_regions = {}
+    city_df = df[df['City'] == city]
+    for idx, x in enumerate(city_df.Final_region):
+        if x in city_regions:
+            city_regions[x] += 1
+        else:
+            city_regions[x] = 1
+    return city_regions
+
+def add_regions_for_city_regions_count(city_regions, all_regions):
+    for x in all_regions:
+        if x not in city_regions:
+            city_regions[x] = 0
+    sorted_region_values = [city_regions[key] for key in sorted(city_regions)]
+    return sorted_region_values
+
+# according to https://www.picos.net/the-seven-regions-of-mexican-cuisine/
+cul_reg_dict = {"North": ['Baja California', "Baja California Sur",
+                         "Sonora", "Chihuahua", "Coahuila", "Durango",
+                         'Zacatecas', "Aguascalientes", "Nuevo Leon", 
+                          'Tamaulipas'],
+                "North Pacific Coast": ['Sinaloa', 'Nayarit', 'Jalisco',
+                                       'Colima'],
+                "Bajio": ['Michoacan', "Michoacan de Ocampo", 
+                          'Guanajuato', 'San Luis Potosi', 'Queretaro'],
+                "South Pacific Coast": ['Guerrero', 'Oaxaca', 'Chiapas'],
+                "South": ['Campeche', "Yucatan", "Quintana Roo"],
+                "Gulf": ['Tabasco', 'Veracruz'],
+                "Central": ['Mexico', 'Puebla', 'Morelos', 'Tlaxcala', "Hidalgo", "Mexico City",
+                           'Ciudad de Mexico', "Distrito Federal", 'Ciudad De Mexico']
+                }
+def turn_city_regions_to_cul_regions(city_regions, cul_regions=cul_reg_dict):
+    city_cul_regions = {key:0 for key in cul_regions.keys()}
+    for key, value in city_regions.items():
+        for key2, value2 in cul_regions.items():
+            if key.title() in value2:
+                city_cul_regions[key2] += value
+    return city_cul_regions
+
+def turn_regions_to_cul_regions(cul_reg_dict=cul_reg_dict):
+    region_to_cul_reg_dict = {}
+    for key, value in cul_reg_dict.items():
+        for item in value:
+            region_to_cul_reg_dict[item] = key
+    return region_to_cul_reg_dict
+
+def select_random_restaurants(city, df):
+    # input restaurants_df (full, original df)
+    new_df = df[df['City'] == city].reset_index(drop=True)
+    new_indices = []
+#     region_dict = {key:0 for key in all_regions}
+# pick 10 random numbers and use those indices
+    random_nums = []
+    while len(random_nums) < 10:
+        random_number = random.randint(0, len(new_df)-1)
+        if random_number not in random_nums:
+            random_nums.append(random_number)
+    final_df = new_df[new_df.index.isin(random_nums) == True]
+#     count_of_regions = final_df.Final_region.nunique()
+#     count_of_culinary_regions = final_df.Culinary_region.nunique()
+#     for number in random_nums:
+#         region = new_df['new_region'][number]
+#         region_dict[region] += 1
+    return final_df
+
+def interpret_random_restaurants_df(df):
+    # rest_df
+    count_of_regions = df.Final_region.nunique()
+    count_of_culinary_regions = df.Culinary_region.nunique()
+    return count_of_regions, count_of_culinary_regions
+
+def get_5_samples_of_rand_regions(city, df):
+    df_list = []
+    region_counter = 0
+    culinary_region_counter = 0
+    while len(df_list) < 5:
+        df_trial = select_random_restaurants(city, df)
+        region_count, culinary_region_count = interpret_random_restaurants_df(df_trial)
+        region_counter += region_count
+        culinary_region_counter += culinary_region_count
+        df_list.append(df_trial)
+    mean_region_count = round(region_counter / 5, 1)
+    mean_culinary_region_count = round(culinary_region_counter / 5, 1)
+    print(f"For {city} the mean number of regions is {mean_region_count} and the mean number of culinary_regions is {mean_culinary_region_count}")
+    return mean_region_count, mean_culinary_region_count
