@@ -14,7 +14,7 @@ This project aimed to use the outward representations of Mexican restaurants in 
 ### Results
 We see noticable differences in the proportion of the regions referred to in restaurant names for each of these cities. Over 46% of NYC restaurants are connected to Puebla ([_Mixteca Baja_](https://en.wikipedia.org/wiki/La_Mixteca)), a percentage of restaurants that is far higher than we see in any of the other cities measured. The next closes is  Michoacàn which makes up _31_% of Dallas's Mexican restaurants. Overall, we see the lack of a clear pattern in which regions Mexicans come from and where they end up in the United States. The tendencies that emerge are a few cases of clear connections between Mexican regions and American cities (Michoacàn to San Francisco and Dallas, Puebla to New York City) but a generally balanced migration from all parts of Mexico to the United States.
 
-![Mexican Regions for Each City](./images/Map_of_cities_and_their_regions.png)
+![Mexican Regions for Each City](./images/Map_of_cities_and_their_regions_cont_scale.png)
 
 Although not expected, we also see strong evidence of chain migration to specific regions, and even villages, of the United States. In New York City, we see 5 of the 79 restaurants refer to one <10,000 person town in Mexico ([Tulcingo](https://es.wikipedia.org/wiki/Municipio_de_Tulcingo)). It may even be that more people from Tulcingo del Valle, Puebla, Mexico live in NYC than in the town itself! It is almost certain that the people from Tulcingo in NYC are part of a tight-knit community that encouraged each other to move to NYC. 
 
