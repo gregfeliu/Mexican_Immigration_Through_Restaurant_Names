@@ -3,6 +3,7 @@ import re
 import pandas as pd
 import unidecode
 import random
+from collections import OrderedDict
 
 
 ##### Demonym Dictionary Notebook #####
@@ -118,17 +119,6 @@ def add_city_to_all_cities_dict(rest_matches_w_regions, city_name, df_cols=city_
                 region_str += sublist[0] + ","
             all_matched_regions.append(region_str[0:-1])
     matched_region_flag = [False if x.count(",") > 0 else True for x in all_matched_regions]
-#     city_df = pd.DataFrame(data = [[list(rest_matches_w_regions.keys()), 
-#                                    "", 
-#                                    matched_words_list,
-#                                    all_matched_regions,
-#                                    matched_region_flag,
-#                                    ""]],
-#                            columns = df_cols
-#     )
-#     final_df = input_df.append(city_df, ignore_index = True)
-#     final_df
-#     final_df['City'] = city_name
     input_df = pd.DataFrame(columns = df_cols)
     input_df['Restaurant'] = list(rest_matches_w_regions.keys())
     input_df['City'] = city_name
@@ -198,11 +188,6 @@ def select_random_restaurants(city, df):
         if random_number not in random_nums:
             random_nums.append(random_number)
     final_df = new_df[new_df.index.isin(random_nums) == True]
-#     count_of_regions = final_df.Final_region.nunique()
-#     count_of_culinary_regions = final_df.Culinary_region.nunique()
-#     for number in random_nums:
-#         region = new_df['new_region'][number]
-#         region_dict[region] += 1
     return final_df
 
 def interpret_random_restaurants_df(df):
@@ -225,3 +210,18 @@ def get_5_samples_of_rand_regions(city, df):
     mean_culinary_region_count = round(culinary_region_counter / 5, 1)
     print(f"For {city} the mean number of regions is {mean_region_count} and the mean number of culinary_regions is {mean_culinary_region_count}")
     return mean_region_count, mean_culinary_region_count
+
+def find_region_counts_list(city_name, df, demonym_dict, gdf):
+    rest_count_dict = {key:0 for key in demonym_dict.keys()}
+    city_df = df[df['City'] == city_name].reset_index()
+    for idx in range(len(city_df['City'])):
+        region = city_df['Final_region'][idx]
+        if region in rest_count_dict.keys():
+            rest_count_dict[region] += 1
+        else:
+            rest_count_dict[region] = 0
+    rest_count_dict_sorted = OrderedDict(sorted(rest_count_dict.items(), key=lambda t: t[0]))
+    rest_counts = list(rest_count_dict_sorted.values())
+    city_name_count = city_name + "_count"
+    gdf[city_name_count] = rest_counts
+    return gdf
