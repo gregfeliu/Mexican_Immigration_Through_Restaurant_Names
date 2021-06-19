@@ -40,5 +40,8 @@ Both of these are untested and could be incorrect. Additionally, if employment o
     - Seaborn
     - Matplotlib
 
+## Further Reading
+The results of this project were published in a two-part series of blogs ([Part 1](https://gregfeliu.medium.com/what-can-we-learn-about-mexican-immigration-from-restaurant-names-part-1-57165263915f), [Part 2](https://gregfeliu.medium.com/what-can-we-learn-about-mexican-immigration-from-restaurant-names-part-2-412aa86e1302)). Further, a [Spanish-language article](https://eldiariony.com/2021/03/12/cual-es-la-region-mexicana-preferida-de-los-restaurantes-en-nueva-york-y-estados-unidos/) of this project was written in El Diario NYC.  
+
 ## Update
 In March 2021 I redid this project. I streamlined my demonym dictionary, added more restaurant categories for Chicago (which led to 50.6 times more restaurants being found), and lowered the size of my code (overall, the code is 8 times smaller now than it was in the first iteration). 
